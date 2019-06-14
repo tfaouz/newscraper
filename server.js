@@ -15,6 +15,10 @@ var router = express.Router();
 // public folder is static directory
 app.use(express.static(__dirname + "/public"));
 
+app.engine("handlebars", expressHandlebars({
+    defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
 
 // enables bodyparser
 app.use(bodyParser.urlencoded({
