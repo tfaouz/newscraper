@@ -47,7 +47,7 @@ html {
   
   .jumbotron .background-image {
     height: 100%;
-    background-image: url("../images/news.jpg");
+    background-image: url("../images/HT_blosom_jef_150702_12x5_992.jpg");
     background-size: cover;
   }
   
@@ -167,3 +167,7 @@ html {
     position: relative;
     bottom: 10px;
   }
+
+  
+/* from custom css video */
+  
