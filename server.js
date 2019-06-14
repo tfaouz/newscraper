@@ -39,7 +39,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true }, function (
         console.log(err);
     }
     else {
-        console.log("Mongoose connection is successful!");
+        console.log("Mongoose has connected successfully");
     }
 });
 // listens to the port
