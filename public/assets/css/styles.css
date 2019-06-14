@@ -7,7 +7,8 @@ html {
     margin-bottom: 80px;
     background-image: url("../images/3-xx-century-capital-giant-golden-pinata-cow-in-new-york-by-sebastian-errazuriz.jpg");
   }
-  
+  /* NOT LINKED CORRECTLY */
+
   .card a:not([href]):not([tabindex]).scrape-new {
     color: #2196F3;
   }
@@ -31,7 +32,7 @@ html {
     height: 500px;
     padding: 0;
     font-family: "Cormorant SC";
-    box-shadow: 10px 5px 20px 2px lightslategrey;
+    box-shadow: 10px 5px 20px 2px red;
   }
   
   .jumbotron .overlay {
@@ -50,6 +51,7 @@ html {
     background-image: url("../images/HT_blosom_jef_150702_12x5_992.jpg");
     background-size: cover;
   }
+  /* NOT LINKED CORRECTLY */
   
   .jumbotron .caption {
     position: absolute;
@@ -78,7 +80,7 @@ html {
   
   .card {
     border-radius: 0;
-    box-shadow: 3px 3px 20px lightslategrey;
+    box-shadow: 3px 3px 20px goldenrod;
     margin: 20px 0;
   }
   
@@ -141,7 +143,7 @@ html {
   }
   
   .navbar-nav > li > a.scrape-new:active {
-    background: #e51c23;
+    background: greenyellow;
   }
   
   .scrape-new {
@@ -168,6 +170,6 @@ html {
     bottom: 10px;
   }
 
-  
+
 /* from custom css video */
-  
+  /* css looks like trash i should fix later once app is functional  */
