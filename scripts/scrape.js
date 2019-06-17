@@ -2,6 +2,7 @@
 
 var axios = require("axios");
 var cheerio = require("cheerio");
+var request = require("request");
 
 // has call back param
 // requests nyt error response and body
@@ -17,6 +18,7 @@ var scrape = function (cb) {
             var head = $(this).children(".story-heading").text().trim();
             var sum = $(this).children(".summary").text().trim();
             // grabs text cuts off white space at end
+            console.log("scrape working")
 
 
             if (head && sum) {

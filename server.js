@@ -3,7 +3,8 @@ var express = require("express");
 var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var logger = require("morgan")
+var logger = require("morgan");
+var request = require("request");
 
 // sets port to 3000
 var PORT = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ var app = express();
 // sets up express router
 var router = express.Router();
 
-// requites routes tofile to pass through router object!!
+// requites routes to file to pass through router object!!
 require("./config/routes")(router);
 
 // public folder is static directory
