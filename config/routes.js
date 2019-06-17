@@ -1,6 +1,5 @@
 
 var scrape = require("../scripts/scrape");
-
 var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
 
@@ -31,7 +30,7 @@ module.exports = function (router) {
             }
         });
     });
-
+    // issues with above doesnt pull articles
     // when router hits api headlines take request and respond
     router.get("/api/headlines", function (req, res) {
         var query = {};
