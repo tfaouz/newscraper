@@ -100,6 +100,7 @@ $(document).ready(function () {
             method: "PATCH",
             url: "/api/headlines",
             data: articleToSave
+
         }).then(function (data) {
             if (data.ok) {
                 initPage();
