@@ -3,6 +3,7 @@ var express = require("express");
 var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var logger = require("morgan")
 
 // sets port to 3000
 var PORT = process.env.PORT || 3000;
