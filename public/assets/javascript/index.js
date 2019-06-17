@@ -6,6 +6,7 @@ $(document).ready(function () {
     var articleContainer = $(".article-container");
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);
+    $(".clear").on("click", handleArticleClear);
 
     initPage();
     // runs initpage function
@@ -115,6 +116,13 @@ $(document).ready(function () {
             bootbox.alert(
                 "<h3 class='text-center m-top-80'>" + data.message + "<h3>"
             );
+        });
+    }
+
+    function handleArticleClear() {
+        $.get("api/clear").then(function () {
+            articleContainer.empty();
+            initPage();
         });
     }
 });
