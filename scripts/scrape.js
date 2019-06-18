@@ -14,7 +14,7 @@ var scrape = function (cb) {
 
         var articles = [];
 
-        $(".theme-summery").each(function (i, element) {
+        $(".theme-summary").each(function (i, element) {
             var head = $(this).children(".story-heading").text().trim();
             var sum = $(this).children(".summary").text().trim();
             // grabs text cuts off white space at end
