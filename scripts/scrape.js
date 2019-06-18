@@ -1,43 +1,44 @@
-// Requires axios and cheerio to make the scrape possible
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-var axios = require("axios");
-var cheerio = require("cheerio");
-var request = require("request");
+const instance = axios.create({
+    baseURL: 'https://www.nytimes.com/',
+    timeout: 1000,
+});
 
-// has call back param
-// requests nyt error response and body
+async function scrape(cb) {
+    console.log('we made it');
+    const items = await instance.request();
+    console.log(items);
+    /*       let $ = cheerio.load(body);
+  
+          let articles = [];
+  
+          $(".theme-summary").each(function (i, element) {
+              let head = $(this).children(".story-heading").text().trim();
+              let sum = $(this).children(".summary").text().trim();
+              // grabs text cuts off white space at end
+              console.log("scrape working")
+  
+  
+              if (head && sum) {
+                  let headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+                  let sumNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+                  // if head exists and if sum exists
+                  // replaces regex method, cleans it up with white space
+  
+                  let dataToAdd = {
+                      headline: headNeat,
+                      summary: sumNeat
+                  };
+                  articles.push(dataToAdd);
+  
+              }
+          });
+          cb(articles);
+          //sends us all the articles
+      }) */
 
-var scrape = function (cb) {
-    request("https://www.nytimes.com/", function (err, res, body) {
-
-        var $ = cheerio.load(body);
-
-        var articles = [];
-
-        $(".theme-summary").each(function (i, element) {
-            var head = $(this).children(".story-heading").text().trim();
-            var sum = $(this).children(".summary").text().trim();
-            // grabs text cuts off white space at end
-            console.log("scrape working")
-
-
-            if (head && sum) {
-                var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-                var sumNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-                // if head exists and if sum exists
-                // replaces regex method, cleans it up with white space
-
-                var dataToAdd = {
-                    headline: headNeat,
-                    summary: sumNeat
-                };
-                articles.push(dataToAdd);
-
-            }
-        });
-        cb(articles);
-        //sends us all the articles
-    });
 }
 //exports big scrape variable
 
