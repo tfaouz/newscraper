@@ -6,15 +6,14 @@ var Headline = require("../models/Headline");
 module.exports = {
     fetch: async function () {
         const articles = await scrape();
-        console.log(articles);
-
-        for (var i = 0; i < articles.length; i++) {
-            articles[i].date = makeDate();
-            articles[i].saved = false;
-        }
-
+        //console.log(articles);
         try {
-            return await Headline.collection.insertMany(articles, { ordered: false });
+            for (var article in articles) {
+                article.date = makeDate();
+                article.saved = false;
+                console.log(article);
+                await Headline.findOneAndUpdate({ url: article.url }, article, { upsert: true });
+            }
         } catch (err) {
             console.log(err);
         }

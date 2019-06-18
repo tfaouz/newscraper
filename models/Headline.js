@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var headlineSchema = new Schema({
+const headlineSchema = new Schema({
     headline: {
         type: String,
         required: true,
@@ -22,6 +22,6 @@ var headlineSchema = new Schema({
     //defaults false but will be switched to true when saved article
 });
 
-var Headline = mongoose.model("Headline", headlineSchema);
+const Headline = mongoose.model("Headline", headlineSchema);
 
 module.exports = Headline;
