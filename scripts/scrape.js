@@ -3,31 +3,21 @@ const cheerio = require("cheerio");
 
 const URL = 'https://lobste.rs';
 
-async function scrape(cb) {
-    const response = await axios.get(URL);
-    // console.log(response.data);
-    const $ = cheerio.load(response.data);
+async function scrape() {
+  const response = await axios.get(URL);
+  // console.log(response.data);
+  const $ = cheerio.load(response.data);
 
-    let articles = [];
-    $('.u_url').each(function (i, element) {
-        /*
-        let link = $(element).find("a").attr("href");
-        let head = $(element).find("h2.headline").text().trim();
-        let sum = $(element).find("p.summary").text().trim();
-        // grabs text cuts off white space at end
-        console.log("scrape working")
-
-        let dataToAdd = {
-            link: link,
-            headline: head,
-            summary: sum
-        };
-
-        console.log('pushing article');
-        
-        articles.push(dataToAdd);
-        */
-    });
+  let articles = [];
+  $('.u-url').each(function (_, element) {
+    let link = element.attribs.href;
+    if (link.startsWith('/s/')) {
+      link = URL + link;
+    }
+    const [first] = element.children;  
+    articles.push({link: link, summary: first.data});
+  });
+  console.log(articles);
 }
 
 module.exports = scrape;
