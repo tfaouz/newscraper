@@ -4,19 +4,20 @@ var Headline = require("../models/Headline");
 // require require
 
 module.exports = {
+    fetch: async function () {
+        const articles = await scrape();
+        console.log(articles);
 
-    fetch: function (cb) {
-        scrape(function (data) {
-            var articles = data;
-            for (var i = 0; i < articles.length; i++) {
-                articles[i].date = makeDate();
-                articles[i].saved = false;
-            }
+        for (var i = 0; i < articles.length; i++) {
+            articles[i].date = makeDate();
+            articles[i].saved = false;
+        }
 
-            Headline.collection.insertMany(articles, { ordered: false }, function (err, docs) {
-                cb(err, docs);
-            });
-        });
+        try {
+            return await Headline.collection.insertMany(articles, { ordered: false });
+        } catch (err) {
+            console.log(err);
+        }
     },
 
     delete: function (query, cb) {

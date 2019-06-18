@@ -16,19 +16,19 @@ module.exports = function (router) {
 
     // runs function off fetch, pops up message when no new articles and new articles
     // request and response 
-    router.get("/api/fetch", function (req, res) {
-        headlinesController.fetch(function (err, docs) {
-            if (!docs || docs.insertedCount === 0) {
-                res.json({
-                    message: "No new articles..."
-                });
-            }
-            else {
-                res.json({
-                    message: "Added " + docs.insertedCount + " new articles!"
-                });
-            }
-        });
+    router.get("/api/fetch", async function (req, res) {
+        const docs = await headlinesController.fetch()
+        console.log(docs);
+        if (!docs || docs.insertedCount === 0) {
+            res.json({
+                message: "No new articles..."
+            });
+        }
+        else {
+            res.json({
+                message: "Added " + docs.insertedCount + " new articles!"
+            });
+        }
     });
     // issues with above doesnt pull articles
     // when router hits api headlines take request and respond
