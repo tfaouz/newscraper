@@ -19,9 +19,8 @@ module.exports = {
       console.log(err);
     }
   },
-
-  delete: function (query, cb) {
-    Headline.remove(query, cb);
+  delete: async function () {
+    return await Headline.remove({});
   },
 
   get: async function (query) {

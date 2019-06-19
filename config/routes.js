@@ -31,6 +31,10 @@ module.exports = function (router) {
       });
     }
   });
+  router.get("/api/clear", async function (_, res) {
+    await headlinesController.delete();
+    res.render("home");
+  });
   // issues with above doesnt pull articles
   // when router hits api headlines take request and respond
   router.get("/api/headlines", async function (req, res) {
