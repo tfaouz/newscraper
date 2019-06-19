@@ -1,25 +1,24 @@
 const mongoose = require("mongoose");
+const upsertMany = require('@meanie/mongoose-upsert-many');
 
 const Schema = mongoose.Schema;
+mongoose.plugin(upsertMany);
 
 const headlineSchema = new Schema({
-    headline: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    // makes headline unique so its not grabbing the same thing 2x
-
-    summary: {
-        type: String,
-        required: true
-    },
-    date: String,
-    saved: {
-        type: Boolean,
-        default: false
-    }
-    //defaults false but will be switched to true when saved article
+  link: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  summary: {
+    type: String,
+    required: true
+  },
+  date: String,
+  saved: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Headline = mongoose.model("Headline", headlineSchema);
