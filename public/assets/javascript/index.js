@@ -46,12 +46,12 @@ $(document).ready(function () {
         var cardHeader = $("<div class='card-header'>").append(
             $("<h3>").append(
                 $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
-                    .attr("href", article.url)
-                    .text(article.headline),
+                    .attr("href", article.link)
+                    .text(article.link),
                 $("<a class='btn btn-success save'>Save Article</a>")
             )
         );
-
+        // article.link
         var cardBody = $("<div class='card-body'>").text(article.summary);
 
         card.append(cardHeader, cardBody);
