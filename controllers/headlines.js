@@ -29,7 +29,7 @@ async function fetch () {
 }
 
 async function remove() {
-  return await Headline.remove({});
+  return await Headline.deleteMany({});
 }
 
 async function get(query) {

@@ -118,7 +118,7 @@ $(document).ready(function () {
     function handleArticleDelete() {
         // This function handles deleting articles/headlines
         // We grab the id of the article to delete from the card element the delete button sits inside
-        var articleToDelete = $(this)
+        var articleToUpdate = $(this)
             .parents(".card")
             .data();
 
@@ -127,9 +127,12 @@ $(document).ready(function () {
             .parents(".card")
             .remove();
         // Using a delete method here just to be semantic since we are deleting an article/headline
+
+        articleToUpdate.saved = false;
         $.ajax({
-            method: "DELETE",
-            url: "/api/headlines/" + articleToDelete._id
+            method: "PATCH",
+            url: "/api/headlines",
+            data: articleToUpdate
         }).then(function (data) {
             // If this works out, run initPage again which will re-render our list of saved articles
             if (data.ok) {

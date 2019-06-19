@@ -14,7 +14,6 @@ module.exports = function (router) {
     // upserted values
     const docs = await headlinesController.fetch();
     const result = docs.result;
-    console.log(result);
     if (result.nUpserted && result.nUpserted > 0) {
       res.json({
 	message: "Added " + result.nUpserted + " new articles!"
@@ -53,11 +52,9 @@ module.exports = function (router) {
     res.json(data);
   });
 
-  router.get("/api/notes/:headline_id?", async function (req, res) {
+  router.get("/api/notes/:id", async function (req, res) {
     let query = {};
-    if (req.params.headline_id) {
-      query._id = req.params.headline_id;
-    }
+    query._id = req.params.id;
     const data =  await notesController.get(query);
     res.json(data);
   });
@@ -65,7 +62,7 @@ module.exports = function (router) {
   router.delete("/api/notes/:id", async function (req, res) {
     let query = {};
     query._id = req.params.id;
-    const data = await notesController.delete(query);
+    const data = await notesController.remove(query);
     res.json(data);
   });
 
