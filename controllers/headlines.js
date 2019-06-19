@@ -2,38 +2,47 @@ const scrape = require("../scripts/scrape");
 const makeDate = require("../scripts/date");
 const Headline = require("../models/Headline");
 
-// require require
+async function fetch () {
+  const match = ['link'];
 
-module.exports = {
-  fetch: async function () {
-    const articles = await scrape();
-    const match = ['link'];
+  let articles = [];
+  let ret = {};
 
-    for (var article in articles) {
-      article.date = makeDate();
-      article.saved = false;
-    }
-    try {
-      return await Headline.upsertMany(articles, match);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  delete: async function () {
-    return await Headline.remove({});
-  },
-
-  get: async function (query) {
-    return await Headline.find(query).sort({ _id: -1 });
-  },
-
-  update: function (query, cb) {
-    Headline.update({ _id: query._id }, {
-      $set: query
-    }, {}, cb);
+  try {
+    articles = await scrape();
+  } catch (err) {
+    console.log(err);
   }
+
+  for (var article in articles) {
+    article.date = makeDate();
+    article.saved = false;
+  }
+
+  try {
+    ret = await Headline.upsertMany(articles, match);
+  } catch (err) {
+    console.log(err);
+  }
+
+  return ret;
 }
 
-// when run fetch run fuction pass cb into function then run scrape, set data to articles and goes through articles, runs make date function
-//fetch grabs all the articles in the scrape
-//
+async function remove() {
+  return await Headline.remove({});
+}
+
+async function get(query) {
+  return await Headline.find(query).sort({ _id: -1 });
+}
+
+async function update(query) {
+  return await Headline.updateOne({ _id: query._id }, { $set: query}, {});
+}
+
+module.exports = {
+  fetch: fetch,
+  remove: remove,
+  get: get,
+  update: update,
+};

@@ -1,33 +1,28 @@
-// controller for notes
-
 var Note = require("../models/Note");
-var makeDate = require("../scripts/date");
 
-module.exports = {
-    get: function (data, cb) {
-        Note.find({
+async function get(data) {
+        return await Note.find({
             _headlineId: data._id
-        }, cb);
-    },
-    save: function (data, cb) {
-        var newNote = {
+        });
+}
+
+async function save(data) {
+        let newNote = {
             _headlineId: data._id,
-            date: makeDate(),
+            date: Date.now(),
             noteText: data.noteText
         };
-        Note.create(newNote, function (err, doc) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log(doc);
-                cb(doc);
-            }
-        });
-    },
-    delete: function (data, cb) {
-        Note.remove({
+  return await Note.create(newNote);
+}
+
+async function remove(data) {
+        await Note.remove({
             _id: data._id
-        }, cb);
-    }
+        });
+}
+
+module.exports = {
+  get: get,
+  save: save,
+  remove: remove,
 };

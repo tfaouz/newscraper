@@ -18,7 +18,7 @@ const headlineSchema = new Schema({
   saved: {
     type: Boolean,
     default: false
-  }
+  },
 });
 
 const Headline = mongoose.model("Headline", headlineSchema);
