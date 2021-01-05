@@ -19,7 +19,7 @@
   "homepage": "https://github.com/tfaouz/newscraper#readme",
   "dependencies": {
     "@meanie/mongoose-upsert-many": "^1.5.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootbox": "^5.1.3",
     "cheerio": "^1.0.0-rc.3",
